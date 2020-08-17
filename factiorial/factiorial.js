@@ -25,6 +25,6 @@ console.log((factorial(1)=== 1));
 console.log('factorial(13) == 6,227,020,800');
 console.log(`but equals ${factorial(13)}`);
 console.log((factorial(13)===6227020800));
-console.log('factorial(8) == 40,320')
+console.log('factorial(8) == 40,320');
 console.log(`but equals ${factorial(8)}`);
 console.log((factorial(8)=== 40320));
