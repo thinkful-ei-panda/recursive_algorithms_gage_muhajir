@@ -34,18 +34,19 @@ const outOfMaze = (arr, row=0, cal=0,mov =0) => {
     return 'not a maze';
   }
 
-  console.log(`arr[row][cal] are equal to ${arr[row][cal]}, row = ${row}, and cal = ${cal}`)
+  console.log(`arr[row][cal] has val ${(!!arr[row][cal])}, row = ${row}, and cal = ${cal}`)
   if(mov > 12 ){
     return console.error('over move limit');
   }
-
-  return arr[row][cal+1] === ' ' ? 'R,' + outOfMaze(arr, row, cal + 1, mov + 1)
+  let pathTrav = [] ;
+  console.log(pathTrav);
+  return arr[row][cal+1] === ' '  ? pathTrav.push('R') && 'R,' + outOfMaze(arr, row, cal + 1, mov + 1)
     : arr[row][cal + 1] ==='e' ? 'R,>end<' 
-      : arr[row+1][cal] === ' '    ? 'D,' + outOfMaze(arr, row+1, cal, mov + 1)
+      : arr[row+1][cal] === ' '     ? pathTrav.push('D') && 'D,' + outOfMaze(arr, row+1, cal, mov + 1)
         : arr[row+1][cal] ==='e' ? 'L,>end<' 
-          : arr[row][cal-1] === ' '  ? 'L,'+ outOfMaze(arr, row, cal-1, mov + 1)
+          : arr[row][cal-1] === ' '   ?pathTrav.push('L') && 'L,'+ outOfMaze(arr, row, cal-1, mov + 1)
             : arr[row][cal-1] ==='e' ? 'L,>end<' 
-              : arr[row-1][cal] === ' '? 'U,'+ outOfMaze(arr,row-1, cal, mov + 1)
+              : arr[row-1][cal] === ' ' ? pathTrav.push('U') && 'U,'+ outOfMaze(arr,row-1, cal, mov + 1)
                 : arr[row-1][cal] ==='e' ? 'U,>end<' 
                   : '' ;
 };
@@ -73,7 +74,7 @@ const maze2 = [
 ];
 // console.log(`maze2 == ${outOfMaze(maze2)}`);
 const maze3 = [
-  [' ',' ',' ',' ',' ','#',' '],
+  [' ',' ',' ',' ',' ','#',' '],/*7x7*/
   [' ','#','#','#',' ','#','#'],
   [' ','#',' ',' ',' ',' ',' '],
   [' ','#',' ',' ','#','#',' '],
