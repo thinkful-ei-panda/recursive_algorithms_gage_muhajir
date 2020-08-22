@@ -12,8 +12,6 @@ Output: ["02", "20", "2020"]
  */
 
 const stringSplitter = (str, divVal = ' ') => {
-
-
   let index = str.indexOf(divVal);
   if(index === -1){
     return[str];
