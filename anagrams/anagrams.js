@@ -23,6 +23,21 @@ like
 [e,sta]
 */
 
-const anagram = str => {
-  console.log(str);
+const anagram = (str,ana ='',store = [] ) => {
+  if(!str){
+    store.push(ana);
+    return store; 
+  }
+  for(let i = 0 ; i < str.length ; i++){
+    ana += str[i];
+    anagram(
+      str.slice(0,i) + str.slice(i + 1),
+      ana,
+      store
+    );
+    ana = ana.slice(0, ana.length-1);
+  }
+  return store;
 };
+
+

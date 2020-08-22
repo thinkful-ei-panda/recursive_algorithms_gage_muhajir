@@ -10,7 +10,7 @@ For example, given the maze above, the program should output the following:
 
 */
 
-const outOfMaze = (arr, row=0, cal=0,mov =0 ,path=[],cur) => {
+const outOfMaze = (arr, row=0, cal=0,mov =0 ,path=[], past) => {
 
   if(!Array.isArray(arr)){
     return 'not a maze';
@@ -25,7 +25,8 @@ const outOfMaze = (arr, row=0, cal=0,mov =0 ,path=[],cur) => {
 
   if(arr[row][cal] === 'e'){
     path.push('e');
-    return  outOfMaze(arr,0,0,0,path);
+    past.push(path)
+    return  outOfMaze(arr,0,0,0,path,past);
   }
 
   arr[row][cal] = 'x';
@@ -67,38 +68,8 @@ const outOfMaze = (arr, row=0, cal=0,mov =0 ,path=[],cur) => {
   }
   arr[row][cal] = ' ';
   return 'x';
+
   /***================================================================================================================= */
-  /*
-  if( cal+1 < width && arr[row][cal+1]){
-    if(arr[row][cal+1] === 'x' || arr[row][cal+1] === 'e' ){
-      return pathTrav.push('R') && 'R,' + outOfMaze(arr, row, cal + 1, mov + 1);
-    }
-  }
-  /*down */
-  /*
-  if( row+1 < hight && arr[row+1][cal]){
-    if(arr[row+1][cal]=== 'x' || arr[row+1][cal] === 'e'){
-      return pathTrav.push('D') && 'D,' + outOfMaze(arr, row+1, cal, mov + 1);
-    }
-  }
-
-  /* Left */
-  /*
-  if( cal > 0 && arr[row][cal-1]){
-    if(arr[row][cal-1] === 'x' || arr[row][cal-1] === 'e'){
-      return pathTrav.push('L') && 'L,'+ outOfMaze(arr, row, cal-1, mov + 1);
-    }
-  }
-  if( row > 0 && arr[row-1][cal]){
-    if(arr[row-1][cal] === 'x' || arr[row - 1][cal] === 'e'){
-      return pathTrav.push('U') && 'U,'+ outOfMaze(arr,row-1, cal, mov + 1);
-    }
-  }
-    */              
-
-                 
-                 
-  /* Up */
                     
 };
 /*
@@ -106,10 +77,21 @@ DDRR,
 RRDD,
 */
 const maze1 = [
-  [' ', ' ', ' '],
-  [' ', '#', ' '],
+  [' ', ' ', ' '], /*[r,r,d,d],->[d,d,r,r]*/
+  [' ', '#', ' '], 
   [' ', ' ', 'e']
 ];
+/*assuming that the path traveled is being passed down,
+  have check in place to see if [n] of all arrays 
+
+  if(!path.length)
+    run as normal 
+  else{.. 
+    n = moves made 
+    if(path[i]['n']){
+
+    }
+*/
 
 console.log(`maze1 == ${outOfMaze(maze1)}`);
 /*
@@ -134,3 +116,8 @@ const maze3 = [
   [' ',' ','#','e',' ','#',' ']
 ];
 console.log(`maze3 == ${outOfMaze(maze3)}`);
+
+
+/*
+
+*/
